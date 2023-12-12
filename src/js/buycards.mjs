@@ -1,7 +1,7 @@
 import { getLocalStorage } from "./utils.mjs";
-import playersList from "./cardLists.mjs";
+import { getPlayersList } from "./externalServices.mjs";
 
-var players = playersList();
+var players = getPlayersList();;
 
 export function buylists() {
     var buyList = getLocalStorage("buyList");

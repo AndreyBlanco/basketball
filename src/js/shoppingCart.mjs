@@ -1,5 +1,5 @@
 import { getLocalStorage, renderListWithTemplate } from "./utils.mjs";
-import playersList from "./cardLists.mjs";
+import { getPlayersList } from "./externalServices.mjs";
 
 var buyItems = getLocalStorage("buyList");
 
@@ -46,7 +46,7 @@ function packItemTemplate(item) {
   if (item.playerId == "none") {
       message = "Without a fixed Player | ";
   } else {
-    players = playersList(); 
+    players = getPlayersList(); 
     players.forEach(player => {
       if (player.PlayerID == item.playerid) {
         message = `Fixed Player: ${player.FirstName} ${player.LastName} | `;

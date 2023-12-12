@@ -1,9 +1,9 @@
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
-import playersList from "./cardLists.mjs";
+import getPlayersList from "./externalServices.mjs";
 
 var newList = getLocalStorage('buyed-cards');
 var myList = getLocalStorage("my-cards");
-var players = playersList();
+var players = getPlayersList();
 
 var list = [];
 var secList = [];
