@@ -2,7 +2,13 @@ import { getLocalStorage, renderWithTemplates, renderListWithTemplate } from "./
 import { getPlayersList } from "./externalServices.mjs";
 
 var buyItems = getLocalStorage("buyList");
-var players = await getPlayersList();
+var players = []
+
+async function getPlayers() {
+    players = await getPlayersList();
+}
+
+getPlayers();
 const cartItems = getLocalStorage("sell-cart");
 const packItems = getLocalStorage("pack-cart");
 const outputEl = document.querySelector(".product-list");

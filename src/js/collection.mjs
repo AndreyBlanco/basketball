@@ -3,7 +3,13 @@ import { getPlayersList } from "./externalServices.mjs";
 
 var newList = getLocalStorage('buyed-cards');
 var myList = getLocalStorage("my-cards");
-var players = await getPlayersList();
+var players = []
+
+async function getPlayers() {
+    players = await getPlayersList();
+}
+
+getPlayers();
 
 var list = [];
 var secList = [];
