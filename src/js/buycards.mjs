@@ -1,7 +1,7 @@
 import { getLocalStorage } from "./utils.mjs";
 import { getPlayersList } from "./externalServices.mjs";
 
-var players = getPlayersList();;
+var players = await getPlayersList();
 
 export function buylists() {
     var buyList = getLocalStorage("buyList");

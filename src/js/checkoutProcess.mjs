@@ -78,8 +78,7 @@ const checkoutProcess = {
     displayOrderTotal: function(){
         const tax = document.querySelector(this.outputSelector + " #tax");
         const orderTotal = document.querySelector(this.outputSelector + " #orderTotal");
-        console.log(this.shipping, this.tax);
-        
+              
         tax.innerText = "$" + this.tax;
         orderTotal.innerText = "$" + this.orderTotal;
     },
@@ -92,6 +91,9 @@ const checkoutProcess = {
         json.tax = this.tax,
         json.items = packageItems(this.list);
         console.log(json);
+        if (document.getElementById("checkmss")) {
+            document.getElementById("checkmss").outerHTML= "";
+        }
         try {
             const res = await checkout(json);
             let idItems = getLocalStorage("buyed-cards");
@@ -110,7 +112,10 @@ const checkoutProcess = {
 
             window.open("success.html", "_self");
         } catch (err) {
+            const message = `<p id="checkmss"> Payment Failed. Please check the Credit Card Numbers and try again.`;
+            document.querySelector("#checkpay").insertAdjacentHTML("afterbegin", message)
             console.log(err);
+            
         }
     },
 };

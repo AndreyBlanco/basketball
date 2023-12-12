@@ -1,13 +1,13 @@
-import { loadHeaderFooter, alertMessage, removeAllAlerts } from "./utils.mjs";
+import { loadHeaderFooter, getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 loadHeaderFooter();
 
 document.querySelector("#newopen").addEventListener("click", function() {
   let idItems = getLocalStorage("opened");
   if (!idItems) {
-      setLocalStorage("opened", "true");
+    setLocalStorage("opened", "true");
   } else {
-    localStorage.setItem("opened", "true");
+    setLocalStorage("opened", "true");
   }            
   
   window.open("../collection/index.html", "_self");

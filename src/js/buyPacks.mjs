@@ -67,6 +67,9 @@ function renderPlayerImage() {
             src=${playerItems.PhotoUrl}
             alt="Image of ${playerItems.FirstName} ${playerItems.LastName}"
         />
-        <h2 class="card__name">${playerItems.FirstName} ${playerItems.LastName}</h2>
+        <div id="fixbanner">
+            <h2 class="card__name">${playerItems.FirstName} ${playerItems.LastName}</h2>
+            <p> Purchase any of this packs and find ${playerItems.FirstName} ${playerItems.LastName} inside of it! </p>
+        </div>
         </div>`
 }

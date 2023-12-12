@@ -1,20 +1,19 @@
-import { getLocalStorage, renderListWithTemplate } from "./utils.mjs";
+import { getLocalStorage, renderWithTemplates, renderListWithTemplate } from "./utils.mjs";
 import { getPlayersList } from "./externalServices.mjs";
 
 var buyItems = getLocalStorage("buyList");
+var players = await getPlayersList();
+const cartItems = getLocalStorage("sell-cart");
+const packItems = getLocalStorage("pack-cart");
+const outputEl = document.querySelector(".product-list");
+const outputPack = document.querySelector(".product-pack-list");
 
 export default function shoppingCart() {
-    const cartItems = getLocalStorage("sell-cart");
-    const packItems = getLocalStorage("pack-cart");
-    
-
-    const outputEl = document.querySelector(".product-list");
-    const outputPack = document.querySelector(".product-pack-list");
     if (cartItems) {
       renderListWithTemplate(cartItemTemplate, outputEl, cartItems);
     }
     if (packItems) {
-      renderListWithTemplate(packItemTemplate, outputPack, packItems);
+      packItemTemplate();
     }
 }
 
@@ -40,30 +39,37 @@ function cartItemTemplate(item) {
     return newItem;
 }
 
-function packItemTemplate(item) {
-  let message = "";
-  let players = [];
-  if (item.playerId == "none") {
-      message = "Without a fixed Player | ";
-  } else {
-    players = getPlayersList(); 
+function packItemTemplate() {
     players.forEach(player => {
-      if (player.PlayerID == item.playerid) {
-        message = `Fixed Player: ${player.FirstName} ${player.LastName} | `;
+      packItems.forEach(item =>{
+        if (item.playerId == "none") {
+          let message = `<li class="pack-divider">
+          <table>
+            <tr>
+              <td>Pack with ${packItem.cant} cards | </td>
+              <td>Without a fixed Player | </td>
+              <td>Price: $${item.price}.00</td>
+            </tr>
+          </table>
+        </li>`;
+        addMessage(message);
+      } else if (player.PlayerID == item.playerId) {
+          console.log(player.PlayerID, item.playerId);
+          let message = `<li class="pack-divider">
+          <table>
+            <tr>
+              <td>Pack with ${item.cant} cards | </td>
+              <td>Fixed Player: ${player.FirstName} ${player.LastName} | </td>
+              <td>Price: $${item.price}.00</td>
+            </tr>
+          </table>
+        </li>`;
+        addMessage(message);
       }
     })
-  }
+  })
+}
 
-  const newItem = `<li class="pack-divider">
-      <table>
-        <tr>
-          <td>Pack with ${item.cant} cards | </td>
-          <td>${message}</td>
-          <td>Price: $${item.price}.00</td>
-        </tr>
-      </table>
-    </li>`;
-  
-  return newItem;
-
+function addMessage(message) {
+  outputPack.insertAdjacentHTML("afterbegin", message);
 }

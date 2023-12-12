@@ -9,7 +9,7 @@ if (mylist) {
 }
 
 if (getLocalStorage("opened") == "true") {
-    document.querySelector("#openBtn").style.display = "display: none";
+    document.querySelector("#openBtn").style = "display: none";
     newcards();
 } else {
     const list = getLocalStorage("buyed-cards");
@@ -17,7 +17,7 @@ if (getLocalStorage("opened") == "true") {
     if (!list) {
         document.querySelector("#openBtn").style = "display: none;";
     } else {
-        document.querySelector("#openBtn").style.display = "display: block";
+        document.querySelector("#openBtn").style = "display: block";
     }
 }
 

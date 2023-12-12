@@ -1,21 +1,15 @@
-import { doc } from "prettier";
-
-// wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
 }
-// or a more concise version if you are into that sort of thing:
-// export const qs = (selector, parent = document) => parent.querySelector(selector);
 
-// retrieve data from localstorage
 export function getLocalStorage(key) {
   return JSON.parse(localStorage.getItem(key));
 }
-// save data to local storage
+
 export function setLocalStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
 }
-// set a listener for both touchend and click
+
 export function setClick(selector, callback) {
   qs(selector).addEventListener("touchend", (event) => {
     event.preventDefault();
@@ -39,11 +33,11 @@ export function renderListWithTemplate(templateFn, el, list, position="afterbegi
 };
 
 
-export async function renderWithTemplates(templateFn, el, data, callback, position="afterbegin", clear=true) {
+export async function renderWithTemplates(templateFn, el, data, list, callback, position="afterbegin", clear=true) {
   if (clear) {
     el.innerHTML = "";
   }
-  const htmlString = await templateFn(data);
+  const htmlString = await templateFn(data, list);
   el.insertAdjacentHTML(position, htmlString);
   if (callback) {
     callback(data);

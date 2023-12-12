@@ -100,6 +100,7 @@ nav {
 #primaryNav li:hover {
   background-color:  var(--tertiary-color);
   color:var(--primary-color);
+  cursor: pointer;
 }
 
 #primaryNav li:nth-of-type(1) a {
@@ -118,6 +119,10 @@ nav {
   font-size: 0.8rem;
   color: white;
   text-decoration: none;
+}
+
+#primaryNav li a:hover {
+  cursor: pointer;
 }
 
 footer {
@@ -168,6 +173,7 @@ footer div:nth-of-type(1) {
 #secNav li:hover {
   background-color:  var(--tertiary-color);
   color:var(--primary-color);
+  cursor: pointer;
 }
 
 #secNav li a {
@@ -177,6 +183,10 @@ footer div:nth-of-type(1) {
   font-size: 0.8rem;
   color: white;
   text-decoration: none;
+}
+
+#secNav li a {
+  cursor: pointer;
 }
 
 .social {
@@ -327,6 +337,10 @@ p {
   background-color: var(--tertiary-color);
 }
 
+.packsSection:hover {
+  background-color: var(--secondary-color);
+}
+
 .packsSection p {
   padding-left: 10px;
 }
@@ -382,16 +396,22 @@ p {
   margin: 5px;
 }
 
+.myCard:hover {
+  border: solid var(--secondary-color) 1px;
+}
+
 .myCard a {
   text-decoration: none;
   text-align: center;
+  color: white;
 }
 
 .myCard p {
   font-size: 0.6em;
+  color: white;
 }
 
-.photo {
+.myCard img {
   width: 100%;
   border-bottom: solid var(--tertiary-color) 3px;
 }
@@ -501,11 +521,35 @@ fieldset ul {
   margin-left: 50px;
 }
 
-#collection {
+#collection, #newCollection {
   display: flex;
   flex-flow: wrap ;
   justify-content: space-between;
+  padding: 0;
 }
+
+#newCollection li {
+  background-color: var(--secondary-color);
+}
+
+.fixPlayer {
+  background-color: var(--tertiary-color);
+  margin: auto;
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+}
+
+.card__name {
+  color: var(--primary-color);
+  font-family: var(--font-headline);
+  font-size: large;
+}
+
+#fixbanner {
+  margin: 15px 25px 0 0;
+}
+
 
 
 @media screen and (min-width: 700px) {

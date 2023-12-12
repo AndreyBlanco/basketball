@@ -1,9 +1,9 @@
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
-import getPlayersList from "./externalServices.mjs";
+import { getPlayersList } from "./externalServices.mjs";
 
 var newList = getLocalStorage('buyed-cards');
 var myList = getLocalStorage("my-cards");
-var players = getPlayersList();
+var players = await getPlayersList();
 
 var list = [];
 var secList = [];
@@ -21,7 +21,7 @@ export function mycards() {
                     const card = `<li class="myCard">
                         <a href="../player_page/index.html?player-id=${player.PlayerID}">
                             <img
-                                src=${player.PhotoUrl}
+                                src=${player.PhotoUrl} class="photo"
                                 alt="Image of ${player.FirstName} ${player.LastName}"
                             />
                             <p class="card__name">${player.FirstName} ${player.LastName}</p>
