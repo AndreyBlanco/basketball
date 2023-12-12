@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ 
+    <title> Basketball Trade Cards | Checkout</title>
+
+    <link rel="stylesheet" href="../css/style.css" />
+    <script src="../js/checkout.js" type="module"></script>
+  </head>
+
+  <body>
+    <header id="headerTem"></header>
+
+    <main class="adjus">
+      <h1>Review & Place your Order</h1>
+      <section class="checkout-form">
+        <form id="formCheckOut" name="checkout" >
+          <fieldset>
+            <legend>Shipping</legend>
+            <label for="fname">First Name</label>
+            <input type="text" name="fname" id="fname" required />
+            <label for="lname">Last Name</label>
+            <input type="text" name="lname" id="lname" required />
+            <label for="street">Street</label>
+            <input type="text" name="street" id="street" required />
+            <label for="city">City</label>
+            <input type="text" name="city" id="city" required />
+            <label for="state">State</label>
+            <input type="text" name="state" id="state" required />
+            <label for="zip">Zip</label>
+            <input type="text" name="zip" id="zip" required />
+          </fieldset>
+          <fieldset>
+            <legend>Payment</legend>
+            <label for="cardNumber">Card Number</label>
+            <input name="cardNumber" id="cardNumber" minlength="16" maxlength="16" required />
+            <label for="expiration">Expiration</label>
+            <input name="expiration" id="expiration" pattern=^\d{2}\/\d{2}$ required />
+            <label for="code">Security Code</label>
+            <input name="code" id="code" minlength="3" maxlength="3" required />
+          </fieldset>
+          <fieldset class="checkout-summary">
+            <legend>Order Summary</legend>
+            <ul>
+              <li>
+                <label>Item Subtotal(<span id="num-items"></span>)</label>
+                <p name="cartTotal" id="cartTotal"></p>
+              </li>
+              <li>
+                <label>Tax</label>
+                <p id="tax"></p>
+              </li>
+              <li>
+                <label><b>Order Total</b></label>
+                <p id="orderTotal"></p>
+              </li>
+            </ul>
+          </fieldset>
+          <button class="btns" id="checkoutSubmit" type="submit">Checkout</button>
+        </form>
+      </section>
+    </main>
+
+    <footer id="footerTem"></footer>
+  </body>
+</html>
