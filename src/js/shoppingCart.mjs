@@ -4,11 +4,6 @@ import { getPlayersList } from "./externalServices.mjs";
 var buyItems = getLocalStorage("buyList");
 var players = []
 
-async function getPlayers() {
-    players = await getPlayersList();
-}
-
-getPlayers();
 const cartItems = getLocalStorage("sell-cart");
 const packItems = getLocalStorage("pack-cart");
 const outputEl = document.querySelector(".product-list");
@@ -45,35 +40,39 @@ function cartItemTemplate(item) {
     return newItem;
 }
 
-function packItemTemplate() {
-    players.forEach(player => {
-      packItems.forEach(item =>{
-        if (item.playerId == "none") {
-          let message = `<li class="pack-divider">
+async function packItemTemplate() {
+    players = await getPlayersList();
+    packItems.forEach(item => {
+      if (item.playerId == "none") {
+        let message = `<li class="pack-divider">
           <table>
             <tr>
-              <td>Pack with ${packItem.cant} cards | </td>
+              <td>Pack with ${item.cant} cards | </td>
               <td>Without a fixed Player | </td>
               <td>Price: $${item.price}.00</td>
             </tr>
           </table>
         </li>`;
         addMessage(message);
-      } else if (player.PlayerID == item.playerId) {
-          console.log(player.PlayerID, item.playerId);
-          let message = `<li class="pack-divider">
-          <table>
-            <tr>
-              <td>Pack with ${item.cant} cards | </td>
-              <td>Fixed Player: ${player.FirstName} ${player.LastName} | </td>
-              <td>Price: $${item.price}.00</td>
-            </tr>
-          </table>
-        </li>`;
-        addMessage(message);
-      }
-    })
-  })
+      } else {
+        players.forEach(player => { 
+          if (player.PlayerID == item.playerId) {
+            console.log(player.PlayerID, item.playerId);
+            let message = `<li class="pack-divider">
+            <table>
+              <tr>
+                <td>Pack with ${item.cant} cards | </td>
+                <td>Fixed Player: ${player.FirstName} ${player.LastName} | </td>
+                <td>Price: $${item.price}.00</td>
+              </tr>
+            </table>
+          </li>`;
+            addMessage(message);
+          }
+        }
+      )}
+    }
+  )
 }
 
 function addMessage(message) {

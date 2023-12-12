@@ -1,23 +1,24 @@
 import { mycards, newcards } from "./collection.mjs";
-import { getLocalStorage, loadHeaderFooter } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, loadHeaderFooter } from "./utils.mjs";
 
 loadHeaderFooter();
 
 const mylist = getLocalStorage("my-cards");
+const buyedlist = getLocalStorage("buyed-cards");
+var open = getLocalStorage("opened");
+
 if (mylist) {
     mycards();
 }
 
-if (getLocalStorage("opened") == "true") {
-    document.querySelector("#openBtn").style = "display: none";
+console.log(open, buyedlist.length);
+
+if (open == false && buyedlist.length != 0) {
+    document.querySelector("#openBtn").style = "display: block;";   
+} else if (open == true && buyedlist.length > 0) {
     newcards();
-} else {
-    const list = getLocalStorage("buyed-cards");
-    console.log(list);
-    if (!list) {
-        document.querySelector("#openBtn").style = "display: none;";
-    } else {
-        document.querySelector("#openBtn").style = "display: block";
-    }
+    document.querySelector("#openBtn").style = "display: none;";
+    open = false;
+    setLocalStorage("opened", open)
 }
 

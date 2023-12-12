@@ -15,7 +15,7 @@ export default async function packDetails(playerId) {
        document.getElementById("add20pack").addEventListener("click", function() {
         this.style = "display: none;"        
         let idItems = getLocalStorage("pack-cart");
-        let pack = {"cant": 20, "playerId": playerId, "price": 50};
+        let pack = {"cant": "20", "playerId": playerId, "price": "50"};
         if (!idItems) {
             idItems = [];
         }
@@ -27,7 +27,7 @@ export default async function packDetails(playerId) {
     document.getElementById("add10pack").addEventListener("click", function() {
         this.style = "display: none;" 
         let idItems = getLocalStorage("pack-cart");
-        let pack = {"cant": 10, "playerId": playerId, "price": 28};
+        let pack = {"cant": "10", "playerId": playerId, "price": "28"};
         if (!idItems) {
             idItems = [];
         }
@@ -39,7 +39,7 @@ export default async function packDetails(playerId) {
     document.getElementById("add5pack").addEventListener("click", function() {
         this.style = "display: none;" 
         let idItems = getLocalStorage("pack-cart");
-        let pack = {"cant": 5, "playerId": playerId, "price": 15};
+        let pack = {"cant": "5", "playerId": playerId, "price": "15"};
         if (!idItems) {
             idItems = [];
         }
@@ -51,7 +51,7 @@ export default async function packDetails(playerId) {
     document.getElementById("add3pack").addEventListener("click", function() {
         this.style = "display: none;" 
         let idItems = getLocalStorage("pack-cart");
-        let pack = {"cant": 3, "playerId": playerId, "price": 8};
+        let pack = {"cant": "3", "playerId": playerId, "price": "8"};
         if (!idItems) {
             idItems = [];
         }

@@ -3,14 +3,9 @@ import { getPlayersList } from "./externalServices.mjs";
 
 var players = []
 
-async function getPlayers() {
-    players = await getPlayersList();
-}
-
-getPlayers();
-
-export function buylists() {
+export async function buylists() {
     var buyList = getLocalStorage("buyList");
+    players = await getPlayersList();
     players.forEach(player => {
         buyList.forEach(elem => {
             if (player.PlayerID == elem.playerId) {

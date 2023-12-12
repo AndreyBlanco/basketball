@@ -5,21 +5,16 @@ var newList = getLocalStorage('buyed-cards');
 var myList = getLocalStorage("my-cards");
 var players = []
 
-async function getPlayers() {
-    players = await getPlayersList();
-}
-
-getPlayers();
-
 var list = [];
 var secList = [];
 
 document.querySelector("#openBtn").addEventListener("click", function() {
-    document.querySelector("#openBtn").style = "display: none;";
+    this.style = "display: none;";
     newcards();
 });
 
-export function mycards() {
+export async function mycards() {
+    players = await getPlayersList();
     players.forEach(player => {
         myList.forEach(list => {
             list.forEach(pID =>{
@@ -42,7 +37,9 @@ export function mycards() {
     document.querySelector("#openBtn").style = "display: none;";
 }
 
-export function newcards() {
+export async function newcards() {
+    players = await getPlayersList();
+
     if (newList) {
         newList.forEach(element => {
             for (var i=0; i<element.cant; i++) {
@@ -75,7 +72,8 @@ function getRandomInt(max) {
     return Math.floor(Math.random()* max );
 }
 
-function renderPlayerCards() {
+async function renderPlayerCards() {
+    players = await getPlayersList();
     players.forEach(player => {
         secList.forEach(pID =>{
             if (player.PlayerID == pID) {
